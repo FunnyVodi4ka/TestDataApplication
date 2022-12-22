@@ -148,5 +148,44 @@ namespace test_demo_exam_04.MainPages
             FirstTable row = UsersList.SelectedItem as FirstTable;
             NavigationService.Navigate(new AddEditUser(row));
         }
+
+        private void btnCmAdd_Click(object sender, RoutedEventArgs e)
+        {
+            FirstTable row = new FirstTable();
+            AppFrame.frameMain.Navigate(new AddEditUser(row));
+        }
+
+        private void btnCmEdit_Click(object sender, RoutedEventArgs e)
+        {
+            FirstTable row = UsersList.SelectedItem as FirstTable;
+            NavigationService.Navigate(new AddEditUser(row));
+        }
+
+        private void btnCmDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersList.SelectedItem != null)
+            {
+                try
+                {
+                    if (MessageBox.Show("Are you ready?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        var row = UsersList.SelectedItems.Cast<FirstTable>().ToList().ElementAt(0);
+                        AppConnect.model0db.FirstTable.Remove(row);
+                        AppConnect.model0db.SaveChanges();
+
+                        MessageBox.Show("Delete is good", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        UsersList.ItemsSource = SortFilterRows();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Delete error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose row for delete");
+            }
+        }
     }
 }

@@ -17,6 +17,13 @@
             <RowDefinition Height="260"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="btnCmAdd" Header="ADD" Click="btnCmAdd_Click"/>
+                <MenuItem x:Name="btnCmEdit" Header="EDIT" Click="btnCmEdit_Click"/>
+                <MenuItem x:Name="btnCmDelete" Header="DELETE" Click="btnCmDelete_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
 
         <StackPanel Style="{StaticResource StackPanelMS}">
             <StackPanel Style="{StaticResource StackPanelMS}" Orientation="Vertical">
